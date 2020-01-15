@@ -1,0 +1,3 @@
+Then method of the promise register callback that is passed to the event loop when the promise is resolved ..
+
+This call back is registered in microtask queue that has priority more than the macro task queue .

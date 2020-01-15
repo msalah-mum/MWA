@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+
+    <button onclick="promiseFun()">Promise Fetch</button>
+    <button onclick="asyncFun()">Async/Await Fetch</button onclick="promiseFun()">
+    <button onclick="reactFun()">Reactive Fetch</button>
+    <script>
+     const { Observable, of, from } = rxjs;
+    function promiseFun(){
+        fetch("https://randomuser.me/api/")
+        .then((res)=>res.json())
+        .then((json)=>{
+        const {name,location} = json.results[0];
+        const output = JSON.stringify({name,location})
+        console.log(output);
+
+        });
+    }
+    async function asyncFun(){
+        const res = await fetch("https://randomuser.me/api/");
+        const json = await res.json();
+
+        const {name,location} = json.results[0];
+        const output = JSON.stringify({name,location})
+        console.log(output);
+    }
+    function reactFun(){
+        const obs$ = Observable.create(async (observer)=>{
+            const res = await fetch("https://randomuser.me/api/");
+            const json = await res.json();
+            const {name,location} = json.results[0];
+            const output = JSON.stringify({name,location})
+            observer.next(output);
+        })
+        obs$.subscribe(console.log);
+    }
+    </script>
+</body>
+</html>

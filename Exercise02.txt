@@ -1,0 +1,5 @@
+1- promise function : is Asynchronous fun exactly when resolving the promise with then .
+
+2- Async/Await function : is Asynchronous fun but it is written in away as if it synchronous 
+
+3- Reactive function : is Asynchronous 
